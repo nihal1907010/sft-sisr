@@ -1,0 +1,2 @@
+img_size,scale,params_total,params_trainable,params_M,params_trainable_M,macs_G,flops_G,device
+64,4,978083,978083,0.978083,0.978083,4.623433728,9.246867456,cuda

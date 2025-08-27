@@ -93,6 +93,8 @@ def train_pipeline(root_path):
     opt, args = parse_options(root_path, is_train=True)
     opt['root_path'] = root_path
 
+    K = opt["datasets"]["train"]["num_accumulation_steps"]
+
     torch.backends.cudnn.benchmark = True
     # torch.backends.cudnn.deterministic = True
 
@@ -122,6 +124,7 @@ def train_pipeline(root_path):
 
     # create model
     model = build_model(opt)
+
     if resume_state:  # resume training
         model.resume_training(resume_state)  # handle optimizers and schedulers
         logger.info(f"Resuming training from epoch: {resume_state['epoch']}, iter: {resume_state['iter']}.")
@@ -164,6 +167,8 @@ def train_pipeline(root_path):
                 break
             # update learning rate
             model.update_learning_rate(current_iter, warmup_iter=opt['train'].get('warmup_iter', -1))
+            # if (current_iter + 1) % K == 0:
+            #     model.update_learning_rate(current_iter, warmup_iter=opt['train'].get('warmup_iter', -1))
             # training
             model.feed_data(train_data)
             model.optimize_parameters(current_iter)

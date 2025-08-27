@@ -1,5 +1,5 @@
 # general settings
-name: EDSR_Lx4_f192b6_DF2K_500k_B8G1_001
+name: thesis_v1
 model_type: SRModel
 scale: 4
 num_gpu: 1  # set num_gpu: 0 for cpu mode
@@ -26,10 +26,11 @@ datasets:
     use_rot: true
 
     # data loader
-    num_worker_per_gpu: 6
-    batch_size_per_gpu: 8
+    num_worker_per_gpu: 16
+    batch_size_per_gpu: 60
     dataset_enlarge_ratio: 1
-    prefetch_mode: ~
+    prefetch_mode: cuda
+    pin_memory: true
 
   val_1:
     name: Set5
@@ -76,10 +77,10 @@ network_g:
   type: EDSR
   num_in_ch: 3
   num_out_ch: 3
-  num_feat: 192
-  num_block: 6
+  num_feat: 64
+  num_block: 4
   upscale: 4
-  num_heads: 6
+  num_heads: 4
   hw: 8
   ww: 8
   img_range: 255.
@@ -89,7 +90,7 @@ network_g:
 path:
   pretrain_network_g:
   strict_load_g: false
-  resume_state: experiments/EDSR_Lx4_f192b6_DF2K_500k_B8G1_001/training_states/378000.state
+  resume_state: experiments/thesis_v1/training_states/19000.state
 
 # training settings
 train:
@@ -135,8 +136,8 @@ logger:
   save_checkpoint_freq: !!float 1e3
   use_tb_logger: true
   wandb:
-    project: EDSR_Lx4_f192b6_DF2K_500k_B8G1_001
-    resume_id: h7cvs5ou
+    project: thesis_v1
+    resume_id: fzg9xeyj
 
 # dist training settings
 dist_params:

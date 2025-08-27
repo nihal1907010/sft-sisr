@@ -2,6 +2,41 @@ import torch
 from torch import nn as nn
 
 from basicsr.archs.arch_util import ResidualBlockNoBN, Upsample, make_layer
+# thesis_v0_arch.py -- main
+# from basicsr.archs.thesis_v0_arch import BasicBlock
+# thesis_v1_arch.py
+# from basicsr.archs.thesis_v1_arch import BasicBlock
+# thesis_v100.py -- conv
+# from basicsr.archs.thesis_v100 import BasicBlock
+# thesis_v101.py -- without domain swap
+# from basicsr.archs.thesis_v101 import BasicBlock
+# thesis_v102.py -- only spatial path
+# from basicsr.archs.thesis_v102 import BasicBlock
+# thesis_v103.py -- only frequency path
+# from basicsr.archs.thesis_v103 import BasicBlock
+# thesis_v104.py -- without cross attention
+# from basicsr.archs.thesis_v104 import BasicBlock
+# thesis_v105.py -- no frequency encoder
+# from basicsr.archs.thesis_v105 import BasicBlock
+# thesis_v106.py
+# from basicsr.archs.thesis_v106 import BasicBlock
+# thesis_v107.py
+# from basicsr.archs.thesis_v107 import BasicBlock
+# thesis_v108.py
+# from basicsr.archs.thesis_v109 import BasicBlock
+# thesis_v110.py
+# from basicsr.archs.thesis_v111 import BasicBlock
+# thesis_v114.py
+# from basicsr.archs.v114 import BasicBlock
+
+# no spatial encoder
+# from basicsr.archs.no_spatial_encoder import BasicBlock
+
+
+
+# v201.py -- wide, deep
+from basicsr.archs.v201 import BasicBlock
+
 from basicsr.utils.registry import ARCH_REGISTRY
 
 
@@ -33,7 +68,9 @@ class EDSR(nn.Module):
                  num_feat=64,
                  num_block=16,
                  upscale=4,
-                 res_scale=1,
+                 num_heads=4,
+                 hw=8,
+                 ww=8,
                  img_range=255.,
                  rgb_mean=(0.4488, 0.4371, 0.4040)):
         super(EDSR, self).__init__()
@@ -42,7 +79,38 @@ class EDSR(nn.Module):
         self.mean = torch.Tensor(rgb_mean).view(1, 3, 1, 1)
 
         self.conv_first = nn.Conv2d(num_in_ch, num_feat, 3, 1, 1)
-        self.body = make_layer(ResidualBlockNoBN, num_block, num_feat=num_feat, res_scale=res_scale, pytorch_init=True)
+        # thesis_v0_arch.py
+        # self.body = make_layer(BasicBlock, num_block, dim=num_feat, num_heads=num_heads, hw=hw, ww=ww)
+        # thesis_v1_arch.py
+        # self.body = make_layer(BasicBlock, num_block, dim=num_feat, num_heads=num_heads, hw=hw, ww=ww)
+        # thesis_v100.py
+        # self.body = make_layer(BasicBlock, num_block, dim=num_feat, num_heads=num_heads, hw=hw, ww=ww)
+        # thesis_v101.py
+        # self.body = make_layer(BasicBlock, num_block, dim=num_feat, num_heads=num_heads, hw=hw, ww=ww)
+        # thesis_v102.py
+        # self.body = make_layer(BasicBlock, num_block, dim=num_feat, num_heads=num_heads, hw=hw, ww=ww)
+        # thesis_v103.py
+        # self.body = make_layer(BasicBlock, num_block, dim=num_feat, num_heads=num_heads, hw=hw, ww=ww)
+        # thesis_v104.py
+        # self.body = make_layer(BasicBlock, num_block, dim=num_feat, num_heads=num_heads, hw=hw, ww=ww)
+        # thesis_v105.py
+        # self.body = make_layer(BasicBlock, num_block, dim=num_feat, num_heads=num_heads, hw=hw, ww=ww)
+        # thesis_v106.py
+        # self.body = make_layer(BasicBlock, num_block, dim=num_feat, num_heads=num_heads, hw=hw, ww=ww)
+        # thesis_v107.py
+        # self.body = make_layer(BasicBlock, num_block, dim=num_feat, num_heads=num_heads, hw=hw, ww=ww)
+        # thesis_v108.py
+        # self.body = make_layer(BasicBlock, num_block, dim=num_feat, num_heads=num_heads, hw=hw, ww=ww)
+        # thesis_v110.py
+        # self.body = make_layer(BasicBlock, num_block, dim=num_feat, num_heads=num_heads, hw=hw, ww=ww)
+        # v114.py
+        # self.body = make_layer(BasicBlock, num_block, dim=num_feat, num_heads=num_heads, hw=hw, ww=ww)
+
+
+        # v201.py
+        self.body = make_layer(BasicBlock, num_block, dim=num_feat, num_heads=num_heads, hw=hw, ww=ww)
+
+
         self.conv_after_body = nn.Conv2d(num_feat, num_feat, 3, 1, 1)
         self.upsample = Upsample(upscale, num_feat)
         self.conv_last = nn.Conv2d(num_feat, num_out_ch, 3, 1, 1)

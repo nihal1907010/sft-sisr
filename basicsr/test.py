@@ -4,7 +4,7 @@ from os import path as osp
 
 from basicsr.data import build_dataloader, build_dataset
 from basicsr.models import build_model
-from basicsr.utils import get_env_info, get_root_logger, get_time_str, make_exp_dirs
+from basicsr.utils import get_env_info, get_root_logger, get_time_str, make_exp_dirs, init_tb_logger
 from basicsr.utils.options import dict2str, parse_options
 
 

@@ -3,12 +3,34 @@ from collections import OrderedDict
 from os import path as osp
 from tqdm import tqdm
 
+import csv
+
 from basicsr.archs import build_network
 from basicsr.losses import build_loss
 from basicsr.metrics import calculate_metric
 from basicsr.utils import get_root_logger, imwrite, tensor2img
 from basicsr.utils.registry import MODEL_REGISTRY
 from .base_model import BaseModel
+
+import csv
+import os.path as osp
+
+def log_metrics_to_csv(csv_path, current_iter, img_name, metrics_dict):
+    """Log metrics (psnr, ssim, etc.) into a CSV file, one row per image."""
+    write_header = not osp.exists(csv_path)
+
+    with open(csv_path, 'a', newline='') as f:
+        writer = csv.writer(f)
+
+        # Write header once
+        if write_header:
+            header = ['iter', 'img_name'] + list(metrics_dict.keys())
+            writer.writerow(header)
+
+        # Write row (all metrics on same row)
+        row = [current_iter, img_name] + [metrics_dict[m] for m in metrics_dict]
+        writer.writerow(row)
+
 
 
 @MODEL_REGISTRY.register()
@@ -90,7 +112,10 @@ class SRModel(BaseModel):
             self.gt = data['gt'].to(self.device)
 
     def optimize_parameters(self, current_iter):
-        self.optimizer_g.zero_grad()
+        K = self.opt["datasets"]["train"]["num_accumulation_steps"]
+
+        if current_iter % K == 0:
+            self.optimizer_g.zero_grad()
         self.output = self.net_g(self.lq)
 
         l_total = 0
@@ -98,6 +123,9 @@ class SRModel(BaseModel):
         # pixel loss
         if self.cri_pix:
             l_pix = self.cri_pix(self.output, self.gt)
+
+            # thesis_v100_FrequencyAwareLoss
+            # l_pix = self.cri_pix(self.output, self.gt, self.lq)
             l_total += l_pix
             loss_dict['l_pix'] = l_pix
         # perceptual loss
@@ -110,13 +138,17 @@ class SRModel(BaseModel):
                 l_total += l_style
                 loss_dict['l_style'] = l_style
 
+        l_total = l_total / K
         l_total.backward()
-        self.optimizer_g.step()
 
-        self.log_dict = self.reduce_loss_dict(loss_dict)
+        if (current_iter + 1) % K == 0:
 
-        if self.ema_decay > 0:
-            self.model_ema(decay=self.ema_decay)
+            self.optimizer_g.step()
+
+            self.log_dict = self.reduce_loss_dict(loss_dict)
+
+            if self.ema_decay > 0:
+                self.model_ema(decay=self.ema_decay)
 
     def test(self):
         if hasattr(self, 'net_g_ema'):
@@ -232,8 +264,28 @@ class SRModel(BaseModel):
 
             if with_metrics:
                 # calculate metrics
+                # test-only start
+                metrics_row = {}
+                # test-only end
                 for name, opt_ in self.opt['val']['metrics'].items():
-                    self.metric_results[name] += calculate_metric(metric_data, opt_)
+
+                    value = calculate_metric(metric_data, opt_)
+
+                    self.metric_results[name] += value
+
+                    # test-only start
+                    metrics_row[name] = value
+                    # test-only end
+
+                    if tb_logger:
+                        # ds = dataset_name.replace("/", "_").replace("\\", "_")
+                        # img_tag = img_name.replace("/", "_").replace("\\", "_")
+                        # tb_logger.add_scalar(f"metrics/{ds}/per_image/{name}/{img_tag}", float(val), current_iter)
+                        tb_logger.add_scalar(f'individual_metrics/{dataset_name}/{img_name}/{name}', float(value), current_iter)
+                # test-only start
+                csv_path = osp.join(self.opt['path']['log'], f'{dataset_name}_metrics.csv')
+                log_metrics_to_csv(csv_path, current_iter, img_name, metrics_row)
+                # test-only end
             if use_pbar:
                 pbar.update(1)
                 pbar.set_description(f'Test {img_name}')
