@@ -115,14 +115,14 @@ class SRModel(BaseModel):
         K = self.opt["datasets"]["train"]["num_accumulation_steps"]
 
         if current_iter % K == 0:
-            self.optimizer_g.zero_grad()
-        self.output = self.net_g(self.lq)
+            self.optimizer_g.zero_grad() # clears old gradients
+        self.output = self.net_g(self.lq) # predicts the HR output
 
         l_total = 0
         loss_dict = OrderedDict()
         # pixel loss
         if self.cri_pix:
-            l_pix = self.cri_pix(self.output, self.gt)
+            l_pix = self.cri_pix(self.output, self.gt) # calculates the loss
 
             # thesis_v100_FrequencyAwareLoss
             # l_pix = self.cri_pix(self.output, self.gt, self.lq)
@@ -139,11 +139,11 @@ class SRModel(BaseModel):
                 loss_dict['l_style'] = l_style
 
         l_total = l_total / K
-        l_total.backward()
+        l_total.backward() # computes gradients
 
         if (current_iter + 1) % K == 0:
 
-            self.optimizer_g.step()
+            self.optimizer_g.step() # updates weights
 
             self.log_dict = self.reduce_loss_dict(loss_dict)
 

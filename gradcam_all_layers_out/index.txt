@@ -1,0 +1,141 @@
+Grad-CAM outputs per layer (percentile-normalized, gamma-lifted)
+Model: EDSR | Mode: pixel | p_low=1.0 p_high=99.0 gamma=0.6
+
+001  conv_first   OK
+      cam_gray=cam_gray_conv_first.png  cam_color=cam_jet_conv_first.png  overlay=overlay_conv_first.png
+002  body.0   OK
+      cam_gray=cam_gray_body.0.png  cam_color=cam_jet_body.0.png  overlay=overlay_body.0.png
+003  body.0.proj0   OK
+      cam_gray=cam_gray_body.0.proj0.png  cam_color=cam_jet_body.0.proj0.png  overlay=overlay_body.0.proj0.png
+004  body.0.proj1   OK
+      cam_gray=cam_gray_body.0.proj1.png  cam_color=cam_jet_body.0.proj1.png  overlay=overlay_body.0.proj1.png
+005  body.0.freq_mix1   OK
+      cam_gray=cam_gray_body.0.freq_mix1.png  cam_color=cam_jet_body.0.freq_mix1.png  overlay=overlay_body.0.freq_mix1.png
+006  body.0.freq_mix2   OK
+      cam_gray=cam_gray_body.0.freq_mix2.png  cam_color=cam_jet_body.0.freq_mix2.png  overlay=overlay_body.0.freq_mix2.png
+007  body.0.fusion.0   OK
+      cam_gray=cam_gray_body.0.fusion.0.png  cam_color=cam_jet_body.0.fusion.0.png  overlay=overlay_body.0.fusion.0.png
+008  body.0.fusion.2   OK
+      cam_gray=cam_gray_body.0.fusion.2.png  cam_color=cam_jet_body.0.fusion.2.png  overlay=overlay_body.0.fusion.2.png
+009  body.0.fusion.4   OK
+      cam_gray=cam_gray_body.0.fusion.4.png  cam_color=cam_jet_body.0.fusion.4.png  overlay=overlay_body.0.fusion.4.png
+010  body.1   OK
+      cam_gray=cam_gray_body.1.png  cam_color=cam_jet_body.1.png  overlay=overlay_body.1.png
+011  body.1.proj0   OK
+      cam_gray=cam_gray_body.1.proj0.png  cam_color=cam_jet_body.1.proj0.png  overlay=overlay_body.1.proj0.png
+012  body.1.proj1   OK
+      cam_gray=cam_gray_body.1.proj1.png  cam_color=cam_jet_body.1.proj1.png  overlay=overlay_body.1.proj1.png
+013  body.1.freq_mix1   OK
+      cam_gray=cam_gray_body.1.freq_mix1.png  cam_color=cam_jet_body.1.freq_mix1.png  overlay=overlay_body.1.freq_mix1.png
+014  body.1.freq_mix2   OK
+      cam_gray=cam_gray_body.1.freq_mix2.png  cam_color=cam_jet_body.1.freq_mix2.png  overlay=overlay_body.1.freq_mix2.png
+015  body.1.fusion.0   OK
+      cam_gray=cam_gray_body.1.fusion.0.png  cam_color=cam_jet_body.1.fusion.0.png  overlay=overlay_body.1.fusion.0.png
+016  body.1.fusion.2   OK
+      cam_gray=cam_gray_body.1.fusion.2.png  cam_color=cam_jet_body.1.fusion.2.png  overlay=overlay_body.1.fusion.2.png
+017  body.1.fusion.4   OK
+      cam_gray=cam_gray_body.1.fusion.4.png  cam_color=cam_jet_body.1.fusion.4.png  overlay=overlay_body.1.fusion.4.png
+018  body.2   OK
+      cam_gray=cam_gray_body.2.png  cam_color=cam_jet_body.2.png  overlay=overlay_body.2.png
+019  body.2.proj0   OK
+      cam_gray=cam_gray_body.2.proj0.png  cam_color=cam_jet_body.2.proj0.png  overlay=overlay_body.2.proj0.png
+020  body.2.proj1   OK
+      cam_gray=cam_gray_body.2.proj1.png  cam_color=cam_jet_body.2.proj1.png  overlay=overlay_body.2.proj1.png
+021  body.2.freq_mix1   OK
+      cam_gray=cam_gray_body.2.freq_mix1.png  cam_color=cam_jet_body.2.freq_mix1.png  overlay=overlay_body.2.freq_mix1.png
+022  body.2.freq_mix2   OK
+      cam_gray=cam_gray_body.2.freq_mix2.png  cam_color=cam_jet_body.2.freq_mix2.png  overlay=overlay_body.2.freq_mix2.png
+023  body.2.fusion.0   OK
+      cam_gray=cam_gray_body.2.fusion.0.png  cam_color=cam_jet_body.2.fusion.0.png  overlay=overlay_body.2.fusion.0.png
+024  body.2.fusion.2   OK
+      cam_gray=cam_gray_body.2.fusion.2.png  cam_color=cam_jet_body.2.fusion.2.png  overlay=overlay_body.2.fusion.2.png
+025  body.2.fusion.4   OK
+      cam_gray=cam_gray_body.2.fusion.4.png  cam_color=cam_jet_body.2.fusion.4.png  overlay=overlay_body.2.fusion.4.png
+026  body.3   OK
+      cam_gray=cam_gray_body.3.png  cam_color=cam_jet_body.3.png  overlay=overlay_body.3.png
+027  body.3.proj0   OK
+      cam_gray=cam_gray_body.3.proj0.png  cam_color=cam_jet_body.3.proj0.png  overlay=overlay_body.3.proj0.png
+028  body.3.proj1   OK
+      cam_gray=cam_gray_body.3.proj1.png  cam_color=cam_jet_body.3.proj1.png  overlay=overlay_body.3.proj1.png
+029  body.3.freq_mix1   OK
+      cam_gray=cam_gray_body.3.freq_mix1.png  cam_color=cam_jet_body.3.freq_mix1.png  overlay=overlay_body.3.freq_mix1.png
+030  body.3.freq_mix2   OK
+      cam_gray=cam_gray_body.3.freq_mix2.png  cam_color=cam_jet_body.3.freq_mix2.png  overlay=overlay_body.3.freq_mix2.png
+031  body.3.fusion.0   OK
+      cam_gray=cam_gray_body.3.fusion.0.png  cam_color=cam_jet_body.3.fusion.0.png  overlay=overlay_body.3.fusion.0.png
+032  body.3.fusion.2   OK
+      cam_gray=cam_gray_body.3.fusion.2.png  cam_color=cam_jet_body.3.fusion.2.png  overlay=overlay_body.3.fusion.2.png
+033  body.3.fusion.4   OK
+      cam_gray=cam_gray_body.3.fusion.4.png  cam_color=cam_jet_body.3.fusion.4.png  overlay=overlay_body.3.fusion.4.png
+034  body.4   OK
+      cam_gray=cam_gray_body.4.png  cam_color=cam_jet_body.4.png  overlay=overlay_body.4.png
+035  body.4.proj0   OK
+      cam_gray=cam_gray_body.4.proj0.png  cam_color=cam_jet_body.4.proj0.png  overlay=overlay_body.4.proj0.png
+036  body.4.proj1   OK
+      cam_gray=cam_gray_body.4.proj1.png  cam_color=cam_jet_body.4.proj1.png  overlay=overlay_body.4.proj1.png
+037  body.4.freq_mix1   OK
+      cam_gray=cam_gray_body.4.freq_mix1.png  cam_color=cam_jet_body.4.freq_mix1.png  overlay=overlay_body.4.freq_mix1.png
+038  body.4.freq_mix2   OK
+      cam_gray=cam_gray_body.4.freq_mix2.png  cam_color=cam_jet_body.4.freq_mix2.png  overlay=overlay_body.4.freq_mix2.png
+039  body.4.fusion.0   OK
+      cam_gray=cam_gray_body.4.fusion.0.png  cam_color=cam_jet_body.4.fusion.0.png  overlay=overlay_body.4.fusion.0.png
+040  body.4.fusion.2   OK
+      cam_gray=cam_gray_body.4.fusion.2.png  cam_color=cam_jet_body.4.fusion.2.png  overlay=overlay_body.4.fusion.2.png
+041  body.4.fusion.4   OK
+      cam_gray=cam_gray_body.4.fusion.4.png  cam_color=cam_jet_body.4.fusion.4.png  overlay=overlay_body.4.fusion.4.png
+042  body.5   OK
+      cam_gray=cam_gray_body.5.png  cam_color=cam_jet_body.5.png  overlay=overlay_body.5.png
+043  body.5.proj0   OK
+      cam_gray=cam_gray_body.5.proj0.png  cam_color=cam_jet_body.5.proj0.png  overlay=overlay_body.5.proj0.png
+044  body.5.proj1   OK
+      cam_gray=cam_gray_body.5.proj1.png  cam_color=cam_jet_body.5.proj1.png  overlay=overlay_body.5.proj1.png
+045  body.5.freq_mix1   OK
+      cam_gray=cam_gray_body.5.freq_mix1.png  cam_color=cam_jet_body.5.freq_mix1.png  overlay=overlay_body.5.freq_mix1.png
+046  body.5.freq_mix2   OK
+      cam_gray=cam_gray_body.5.freq_mix2.png  cam_color=cam_jet_body.5.freq_mix2.png  overlay=overlay_body.5.freq_mix2.png
+047  body.5.fusion.0   OK
+      cam_gray=cam_gray_body.5.fusion.0.png  cam_color=cam_jet_body.5.fusion.0.png  overlay=overlay_body.5.fusion.0.png
+048  body.5.fusion.2   OK
+      cam_gray=cam_gray_body.5.fusion.2.png  cam_color=cam_jet_body.5.fusion.2.png  overlay=overlay_body.5.fusion.2.png
+049  body.5.fusion.4   OK
+      cam_gray=cam_gray_body.5.fusion.4.png  cam_color=cam_jet_body.5.fusion.4.png  overlay=overlay_body.5.fusion.4.png
+050  body.6   OK
+      cam_gray=cam_gray_body.6.png  cam_color=cam_jet_body.6.png  overlay=overlay_body.6.png
+051  body.6.proj0   OK
+      cam_gray=cam_gray_body.6.proj0.png  cam_color=cam_jet_body.6.proj0.png  overlay=overlay_body.6.proj0.png
+052  body.6.proj1   OK
+      cam_gray=cam_gray_body.6.proj1.png  cam_color=cam_jet_body.6.proj1.png  overlay=overlay_body.6.proj1.png
+053  body.6.freq_mix1   OK
+      cam_gray=cam_gray_body.6.freq_mix1.png  cam_color=cam_jet_body.6.freq_mix1.png  overlay=overlay_body.6.freq_mix1.png
+054  body.6.freq_mix2   OK
+      cam_gray=cam_gray_body.6.freq_mix2.png  cam_color=cam_jet_body.6.freq_mix2.png  overlay=overlay_body.6.freq_mix2.png
+055  body.6.fusion.0   OK
+      cam_gray=cam_gray_body.6.fusion.0.png  cam_color=cam_jet_body.6.fusion.0.png  overlay=overlay_body.6.fusion.0.png
+056  body.6.fusion.2   OK
+      cam_gray=cam_gray_body.6.fusion.2.png  cam_color=cam_jet_body.6.fusion.2.png  overlay=overlay_body.6.fusion.2.png
+057  body.6.fusion.4   OK
+      cam_gray=cam_gray_body.6.fusion.4.png  cam_color=cam_jet_body.6.fusion.4.png  overlay=overlay_body.6.fusion.4.png
+058  body.7   OK
+      cam_gray=cam_gray_body.7.png  cam_color=cam_jet_body.7.png  overlay=overlay_body.7.png
+059  body.7.proj0   OK
+      cam_gray=cam_gray_body.7.proj0.png  cam_color=cam_jet_body.7.proj0.png  overlay=overlay_body.7.proj0.png
+060  body.7.proj1   OK
+      cam_gray=cam_gray_body.7.proj1.png  cam_color=cam_jet_body.7.proj1.png  overlay=overlay_body.7.proj1.png
+061  body.7.freq_mix1   OK
+      cam_gray=cam_gray_body.7.freq_mix1.png  cam_color=cam_jet_body.7.freq_mix1.png  overlay=overlay_body.7.freq_mix1.png
+062  body.7.freq_mix2   OK
+      cam_gray=cam_gray_body.7.freq_mix2.png  cam_color=cam_jet_body.7.freq_mix2.png  overlay=overlay_body.7.freq_mix2.png
+063  body.7.fusion.0   OK
+      cam_gray=cam_gray_body.7.fusion.0.png  cam_color=cam_jet_body.7.fusion.0.png  overlay=overlay_body.7.fusion.0.png
+064  body.7.fusion.2   OK
+      cam_gray=cam_gray_body.7.fusion.2.png  cam_color=cam_jet_body.7.fusion.2.png  overlay=overlay_body.7.fusion.2.png
+065  body.7.fusion.4   OK
+      cam_gray=cam_gray_body.7.fusion.4.png  cam_color=cam_jet_body.7.fusion.4.png  overlay=overlay_body.7.fusion.4.png
+066  conv_after_body   OK
+      cam_gray=cam_gray_conv_after_body.png  cam_color=cam_jet_conv_after_body.png  overlay=overlay_conv_after_body.png
+067  upsample.0   OK
+      cam_gray=cam_gray_upsample.0.png  cam_color=cam_jet_upsample.0.png  overlay=overlay_upsample.0.png
+068  upsample.2   OK
+      cam_gray=cam_gray_upsample.2.png  cam_color=cam_jet_upsample.2.png  overlay=overlay_upsample.2.png
+069  conv_last   OK
+      cam_gray=cam_gray_conv_last.png  cam_color=cam_jet_conv_last.png  overlay=overlay_conv_last.png

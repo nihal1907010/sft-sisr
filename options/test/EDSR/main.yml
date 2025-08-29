@@ -13,37 +13,37 @@ datasets:
     io_backend:
       type: disk
 
-  test_2:
-    name: Set14
-    type: PairedImageDataset
-    dataroot_gt: datasets/Test/Set14/HR
-    dataroot_lq: datasets/Test/Set14/LRx4
-    io_backend:
-      type: disk
+#   test_2:
+#     name: Set14
+#     type: PairedImageDataset
+#     dataroot_gt: datasets/Test/Set14/HR
+#     dataroot_lq: datasets/Test/Set14/LRx4
+#     io_backend:
+#       type: disk
 
-  test_3:
-    name: B100
-    type: PairedImageDataset
-    dataroot_gt: datasets/Test/B100/HR
-    dataroot_lq: datasets/Test/B100/LRx4
-    io_backend:
-      type: disk
+#   test_3:
+#     name: B100
+#     type: PairedImageDataset
+#     dataroot_gt: datasets/Test/B100/HR
+#     dataroot_lq: datasets/Test/B100/LRx4
+#     io_backend:
+#       type: disk
 
-  test_4:
-    name: Manga109
-    type: PairedImageDataset
-    dataroot_gt: datasets/Test/Manga109/HR
-    dataroot_lq: datasets/Test/Manga109/LRx4
-    io_backend:
-      type: disk
+#   test_4:
+#     name: Manga109
+#     type: PairedImageDataset
+#     dataroot_gt: datasets/Test/Manga109/HR
+#     dataroot_lq: datasets/Test/Manga109/LRx4
+#     io_backend:
+#       type: disk
 
-  test_5:
-    name: Urban100
-    type: PairedImageDataset
-    dataroot_gt: datasets/Test/Urban100/HR
-    dataroot_lq: datasets/Test/Urban100/LRx4
-    io_backend:
-      type: disk
+#   test_5:
+#     name: Urban100
+#     type: PairedImageDataset
+#     dataroot_gt: datasets/Test/Urban100/HR
+#     dataroot_lq: datasets/Test/Urban100/LRx4
+#     io_backend:
+#       type: disk
 
 # network structures
 network_g:
@@ -61,7 +61,8 @@ network_g:
 
 # path
 path:
-  pretrain_network_g: experiments/pretrained_models/main.pth
+  pretrain_network_g: experiments/EDSR_Lx4_f192b6_DF2K_500k_B8G1_001/models/net_g_latest.pth
+#   experiments/pretrained_models/main.pth
   strict_load_g: true
 
 # validation settings

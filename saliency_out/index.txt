@@ -1,0 +1,11 @@
+Saliency map (input gradient magnitude) for EDSR
+Mode: loss | p_low=5.0 p_high=95.0 gamma=1.0
+LR: datasets/Test/Set5/LRx4/baby.png
+HR: datasets/Test/Set5/HR/baby.png
+
+Files:
+  sr.png
+  saliency_gray_lr.png
+  saliency_gray_sr.png
+  saliency_color.png
+  saliency_overlay.png
