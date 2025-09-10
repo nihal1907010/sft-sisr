@@ -1,0 +1,2 @@
+mean_power_mse_classic,mean_power_mse_deep,mean_cosine_power_classic,mean_cosine_power_deep,mean_cum_mse_classic,mean_cum_mse_deep,mean_low_mse_classic,mean_mid_mse_classic,mean_high_mse_classic,mean_low_mse_deep,mean_mid_mse_deep,mean_high_mse_deep,n_images
+6.849822742741158e-11,5.1504188484677423e-11,0.9999999985425139,0.9999999929864436,0.0005372370673786966,0.00016791559911583022,6.802393302081203e-10,2.5705779474570347e-13,1.2698198830911805e-15,5.121247698116848e-10,2.4292104541332275e-14,9.99471791313839e-16,100

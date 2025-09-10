@@ -7,7 +7,7 @@ from basicsr.archs.arch_util import ResidualBlockNoBN, Upsample, make_layer
 # thesis_v1_arch.py
 # from basicsr.archs.thesis_v1_arch import BasicBlock
 # thesis_v100.py -- conv
-# from basicsr.archs.thesis_v100 import BasicBlock
+from basicsr.archs.thesis_v100 import BasicBlock
 # thesis_v101.py -- without domain swap
 # from basicsr.archs.thesis_v101 import BasicBlock
 # thesis_v102.py -- only spatial path
@@ -35,7 +35,7 @@ from basicsr.archs.arch_util import ResidualBlockNoBN, Upsample, make_layer
 
 
 # v201.py -- wide, deep
-from basicsr.archs.v201 import BasicBlock
+# from basicsr.archs.v201 import BasicBlock
 
 from basicsr.utils.registry import ARCH_REGISTRY
 

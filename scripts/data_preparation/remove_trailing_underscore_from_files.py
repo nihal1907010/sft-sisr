@@ -29,10 +29,11 @@ def remove_underscores_from_all_files(target_folder: str) -> None:
 
     for root, _, files in os.walk(target_folder):
         for filename in files:
-            if "_" in filename:
+            if "x4" in filename:
                 old_path = os.path.join(root, filename)
-                new_name = filename.replace("_", "")
+                new_name = filename.replace("x4", "")
                 new_path = os.path.join(root, new_name)
+                print(new_path)
 
                 if old_path != new_path:
                     os.rename(old_path, new_path)
@@ -44,7 +45,7 @@ def remove_underscores_from_all_files(target_folder: str) -> None:
 # =============================
 
 # Change this to your main folder path
-FOLDER_PATH = "datasets/Test"
+FOLDER_PATH = "datasets/Valid/DIV2K/LRx4"
 
 # Run the function
 remove_underscores_from_all_files(FOLDER_PATH)

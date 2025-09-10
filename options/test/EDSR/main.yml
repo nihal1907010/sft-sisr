@@ -1,4 +1,5 @@
-name: main
+# name: main
+name: model
 model_type: SRModel
 scale: 4
 num_gpu: 1  # set num_gpu: 0 for cpu mode
@@ -9,41 +10,41 @@ datasets:
     name: Set5
     type: PairedImageDataset
     dataroot_gt: datasets/Test/Set5/HR
-    dataroot_lq: datasets/Test/Set5/LRx4
+    dataroot_lq: data/Set5/LRx4_bilinear
     io_backend:
       type: disk
 
-#   test_2:
-#     name: Set14
-#     type: PairedImageDataset
-#     dataroot_gt: datasets/Test/Set14/HR
-#     dataroot_lq: datasets/Test/Set14/LRx4
-#     io_backend:
-#       type: disk
+  test_2:
+    name: Set14
+    type: PairedImageDataset
+    dataroot_gt: datasets/Test/Set14/HR
+    dataroot_lq: data/Set14/LRx4_bilinear
+    io_backend:
+      type: disk
 
-#   test_3:
-#     name: B100
-#     type: PairedImageDataset
-#     dataroot_gt: datasets/Test/B100/HR
-#     dataroot_lq: datasets/Test/B100/LRx4
-#     io_backend:
-#       type: disk
+  test_3:
+    name: B100
+    type: PairedImageDataset
+    dataroot_gt: datasets/Test/B100/HR
+    dataroot_lq: data/B100/LRx4_bilinear
+    io_backend:
+      type: disk
 
-#   test_4:
-#     name: Manga109
-#     type: PairedImageDataset
-#     dataroot_gt: datasets/Test/Manga109/HR
-#     dataroot_lq: datasets/Test/Manga109/LRx4
-#     io_backend:
-#       type: disk
+  test_4:
+    name: Manga109
+    type: PairedImageDataset
+    dataroot_gt: datasets/Test/Manga109/HR
+    dataroot_lq: data/Manga109/LRx4_bilinear
+    io_backend:
+      type: disk
 
-#   test_5:
-#     name: Urban100
-#     type: PairedImageDataset
-#     dataroot_gt: datasets/Test/Urban100/HR
-#     dataroot_lq: datasets/Test/Urban100/LRx4
-#     io_backend:
-#       type: disk
+  test_5:
+    name: Urban100
+    type: PairedImageDataset
+    dataroot_gt: datasets/Test/Urban100/HR
+    dataroot_lq: data/Urban100/LRx4_bilinear
+    io_backend:
+      type: disk
 
 # network structures
 network_g:
@@ -68,14 +69,15 @@ path:
 # validation settings
 val:
   save_img: true
-  suffix: main  # add suffix to saved images, if None, use exp name
+#   suffix: main  # add suffix to saved images, if None, use exp name
+  suffix: model  # add suffix to saved images, if None, use exp name
 
-  metrics:
-    psnr: # metric name, can be arbitrary
-      type: calculate_psnr
-      crop_border: 4
-      test_y_channel: true
-    ssim:
-      type: calculate_ssim
-      crop_border: 4
-      test_y_channel: true
+#   metrics:
+#     psnr: # metric name, can be arbitrary
+#       type: calculate_psnr
+#       crop_border: 4
+#       test_y_channel: true
+#     ssim:
+#       type: calculate_ssim
+#       crop_border: 4
+#       test_y_channel: true
