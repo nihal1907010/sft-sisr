@@ -4,12 +4,13 @@ import torch
 
 model = EDSR(num_in_ch=3,
              num_out_ch=3,
-             num_feat=96,
-             num_block=12,
+             num_feat=64,
+             num_block=8,
              upscale=4,
              num_heads=8,
              hw=8,
              ww=8,
+             wavelet='db1',
              img_range=255.,
              rgb_mean=[0.4488, 0.4371, 0.4040])
 

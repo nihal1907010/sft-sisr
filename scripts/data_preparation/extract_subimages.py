@@ -44,32 +44,32 @@ def main():
     opt['compression_level'] = 3
 
     # HR images
-    opt['input_folder'] = 'datasets/Train/DF2K/HR'
-    opt['save_folder'] = 'datasets/Train/DF2K/HR_sub'
+    opt['input_folder'] = 'datasets/train/div2k/hr'
+    opt['save_folder'] = 'datasets/train/div2k/hr_sub'
     opt['crop_size'] = 480
     opt['step'] = 240
     opt['thresh_size'] = 0
     extract_subimages(opt)
 
     # LRx2 images
-    opt['input_folder'] = 'datasets/Train/DF2K/LRx2'
-    opt['save_folder'] = 'datasets/Train/DF2K/LRx2_sub'
+    opt['input_folder'] = 'datasets/train/div2k/lrx2'
+    opt['save_folder'] = 'datasets/train/div2k/lrx2_sub'
     opt['crop_size'] = 240
     opt['step'] = 120
     opt['thresh_size'] = 0
     extract_subimages(opt)
 
     # LRx3 images
-    opt['input_folder'] = 'datasets/Train/DF2K/LRx3'
-    opt['save_folder'] = 'datasets/Train/DF2K/LRx3_sub'
+    opt['input_folder'] = 'datasets/train/div2k/lrx3'
+    opt['save_folder'] = 'datasets/train/div2k/lrx3_sub'
     opt['crop_size'] = 160
     opt['step'] = 80
     opt['thresh_size'] = 0
     extract_subimages(opt)
 
     # LRx4 images
-    opt['input_folder'] = 'datasets/Train/DF2K/LRx4'
-    opt['save_folder'] = 'datasets/Train/DF2K/LRx4_sub'
+    opt['input_folder'] = 'datasets/train/div2k/lrx4'
+    opt['save_folder'] = 'datasets/train/div2k/lrx4_sub'
     opt['crop_size'] = 120
     opt['step'] = 60
     opt['thresh_size'] = 0

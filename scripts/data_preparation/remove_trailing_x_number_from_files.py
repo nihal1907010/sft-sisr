@@ -50,7 +50,7 @@ def remove_trailing_x_number_from_all_files(target_folder: str) -> None:
 # =============================
 
 # Change this to your main folder path
-FOLDER_PATH = "datasets/Test"
+FOLDER_PATH = "/home/nihal/sft-sisr/datasets/train/div2k"
 
 # Run the function
 remove_trailing_x_number_from_all_files(FOLDER_PATH)

@@ -7,7 +7,7 @@ from basicsr.archs.arch_util import ResidualBlockNoBN, Upsample, make_layer
 # thesis_v1_arch.py
 # from basicsr.archs.thesis_v1_arch import BasicBlock
 # thesis_v100.py -- conv
-from basicsr.archs.thesis_v100 import BasicBlock
+# from basicsr.archs.thesis_v100 import BasicBlock
 # thesis_v101.py -- without domain swap
 # from basicsr.archs.thesis_v101 import BasicBlock
 # thesis_v102.py -- only spatial path
@@ -36,6 +36,9 @@ from basicsr.archs.thesis_v100 import BasicBlock
 
 # v201.py -- wide, deep
 # from basicsr.archs.v201 import BasicBlock
+
+
+from basicsr.archs.v1_09032026 import BasicBlock
 
 from basicsr.utils.registry import ARCH_REGISTRY
 
@@ -71,6 +74,7 @@ class EDSR(nn.Module):
                  num_heads=4,
                  hw=8,
                  ww=8,
+                 wavelet=None,
                  img_range=255.,
                  rgb_mean=(0.4488, 0.4371, 0.4040)):
         super(EDSR, self).__init__()
@@ -108,7 +112,7 @@ class EDSR(nn.Module):
 
 
         # v201.py
-        self.body = make_layer(BasicBlock, num_block, dim=num_feat, num_heads=num_heads, hw=hw, ww=ww)
+        self.body = make_layer(BasicBlock, num_block, dim=num_feat, num_heads=num_heads, hw=hw, ww=ww, wavelet=wavelet)
 
 
         self.conv_after_body = nn.Conv2d(num_feat, num_feat, 3, 1, 1)
