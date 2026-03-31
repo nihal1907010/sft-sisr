@@ -57,7 +57,7 @@ def main():
     opt['crop_size'] = 240
     opt['step'] = 120
     opt['thresh_size'] = 0
-    extract_subimages(opt)
+    # extract_subimages(opt)
 
     # LRx3 images
     opt['input_folder'] = 'datasets/train/div2k/lrx3'
@@ -65,7 +65,7 @@ def main():
     opt['crop_size'] = 160
     opt['step'] = 80
     opt['thresh_size'] = 0
-    extract_subimages(opt)
+    # extract_subimages(opt)
 
     # LRx4 images
     opt['input_folder'] = 'datasets/train/div2k/lrx4'
@@ -73,7 +73,7 @@ def main():
     opt['crop_size'] = 120
     opt['step'] = 60
     opt['thresh_size'] = 0
-    extract_subimages(opt)
+    # extract_subimages(opt)
 
 
 def extract_subimages(opt):

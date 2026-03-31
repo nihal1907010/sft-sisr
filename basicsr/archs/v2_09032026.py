@@ -228,9 +228,9 @@ class ChannelSelfAttention(nn.Module):
     # qkv = qkv.reshape(3, b, n, c) # 3, batch, height * width, channel
     qkv = qkv.permute(2, 0, 1, 3) # 3, batch, height * width, channel
     q, k, v = qkv[0], qkv[1], qkv[2] # batch, height * width, channel
-    q = q.reshape(b, n, self.num_heads, c // self.num_heads).reshape(b, self.num_heads, n, c // self.num_heads) # batch, num_heads, height * width, channel / num_heads
-    k = k.reshape(b, n, self.num_heads, c // self.num_heads).reshape(b, self.num_heads, n, c // self.num_heads) # batch, num_heads, height * width, channel / num_heads
-    v = v.reshape(b, n, self.num_heads, c // self.num_heads).reshape(b, self.num_heads, n, c // self.num_heads) # batch, num_heads, height * width, channel / num_heads
+    q = q.reshape(b, n, self.num_heads, c // self.num_heads).permute(0, 2, 1, 3) # batch, num_heads, height * width, channel / num_heads
+    k = k.reshape(b, n, self.num_heads, c // self.num_heads).permute(0, 2, 1, 3) # batch, num_heads, height * width, channel / num_heads
+    v = v.reshape(b, n, self.num_heads, c // self.num_heads).permute(0, 2, 1, 3) # batch, num_heads, height * width, channel / num_heads
     attention_scores = torch.matmul(q.transpose(-1, -2), k) # batch, num_heads, channel / num_heads, channel / num_heads
     scaled_scores = attention_scores * self.temperature # batch, num_heads, channel / num_heads, channel / num_heads
 

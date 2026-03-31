@@ -38,7 +38,8 @@ from basicsr.archs.arch_util import ResidualBlockNoBN, Upsample, make_layer
 # from basicsr.archs.v201 import BasicBlock
 
 
-from basicsr.archs.v1_09032026 import BasicBlock
+from basicsr.archs.v4_09032026 import BasicBlock
+
 
 from basicsr.utils.registry import ARCH_REGISTRY
 

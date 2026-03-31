@@ -1,3 +1,5 @@
+
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -228,9 +230,9 @@ class ChannelSelfAttention(nn.Module):
     # qkv = qkv.reshape(3, b, n, c) # 3, batch, height * width, channel
     qkv = qkv.permute(2, 0, 1, 3) # 3, batch, height * width, channel
     q, k, v = qkv[0], qkv[1], qkv[2] # batch, height * width, channel
-    q = q.reshape(b, n, self.num_heads, c // self.num_heads).reshape(b, self.num_heads, n, c // self.num_heads) # batch, num_heads, height * width, channel / num_heads
-    k = k.reshape(b, n, self.num_heads, c // self.num_heads).reshape(b, self.num_heads, n, c // self.num_heads) # batch, num_heads, height * width, channel / num_heads
-    v = v.reshape(b, n, self.num_heads, c // self.num_heads).reshape(b, self.num_heads, n, c // self.num_heads) # batch, num_heads, height * width, channel / num_heads
+    q = q.reshape(b, n, self.num_heads, c // self.num_heads).permute(0, 2, 1, 3) # batch, num_heads, height * width, channel / num_heads
+    k = k.reshape(b, n, self.num_heads, c // self.num_heads).permute(0, 2, 1, 3) # batch, num_heads, height * width, channel / num_heads
+    v = v.reshape(b, n, self.num_heads, c // self.num_heads).permute(0, 2, 1, 3) # batch, num_heads, height * width, channel / num_heads
     attention_scores = torch.matmul(q.transpose(-1, -2), k) # batch, num_heads, channel / num_heads, channel / num_heads
     scaled_scores = attention_scores * self.temperature # batch, num_heads, channel / num_heads, channel / num_heads
 
@@ -316,12 +318,12 @@ class Encoder3(nn.Module):
     hl = hl.reshape(b, -1, c)
     hh = hh.reshape(b, -1, c)
 
-    ll, lh = self.layernorm11(ll), self.layernorm12(lh)
-    ll = ll + self.spatialattention1(ll, torch.cat([ll, lh], -1), lh, h, w)
-    ll, hl = self.layernorm21(ll), self.layernorm22(hl)
-    ll = ll + self.spatialattention2(ll, torch.cat([ll, hl], -1), hl, h, w)
-    ll, hh = self.layernorm31(ll), self.layernorm32(hh)
-    ll = ll + self.spatialattention3(ll, torch.cat([ll, hh], -1), hh, h, w)
+    ll_norm, lh_norm = self.layernorm11(ll), self.layernorm12(lh)
+    ll = ll + self.spatialattention1(ll_norm, torch.cat([ll_norm, lh_norm], -1), lh_norm, h, w)
+    ll_norm, hl_norm = self.layernorm21(ll), self.layernorm22(hl)
+    ll = ll + self.spatialattention2(ll_norm, torch.cat([ll_norm, hl_norm], -1), hl_norm, h, w)
+    ll_norm, hh_norm = self.layernorm31(ll), self.layernorm32(hh)
+    ll = ll + self.spatialattention3(ll_norm, torch.cat([ll_norm, hh_norm], -1), hh_norm, h, w)
 
     ll = ll + self.mlp(self.layernorm4(ll))
 
@@ -353,10 +355,10 @@ class CrossEncoder(nn.Module):
         x_path0 = x_path0.permute(0, 2, 3, 1).reshape(b, -1, c)
         x_path1 = x_path1.permute(0, 2, 3, 1).reshape(b, -1, c)
 
-        x_path0 = self.spatial_layernorm1(x_path0)
-        x_path1 = self.spatial_layernorm2(x_path1)
+        x_path0_norm = self.spatial_layernorm1(x_path0)
+        x_path1_norm = self.spatial_layernorm2(x_path1)
 
-        x = x_path0 + self.spatial_crossattention(x_path0, x_path1, x_path1, h, w)
+        x = x_path0 + self.spatial_crossattention(x_path0_norm, x_path1_norm, x_path1_norm, h, w)
         x = x + self.spatial_mlp(self.spatial_layernorm3(x))
 
         x = x.reshape(b, h, w, c).permute(0, 3, 1, 2)
@@ -364,10 +366,10 @@ class CrossEncoder(nn.Module):
         ll_path0 = ll_path0.permute(0, 2, 3, 1).reshape(b, -1, c)
         ll_path1 = ll_path1.permute(0, 2, 3, 1).reshape(b, -1, c)
 
-        ll_path0 = self.freq_layernorm1(ll_path0)
-        ll_path1 = self.freq_layernorm2(ll_path1)
+        ll_path0_norm = self.freq_layernorm1(ll_path0)
+        ll_path1_norm = self.freq_layernorm2(ll_path1)
 
-        ll = ll_path1 + self.freq_crossattention(ll_path1, ll_path0, ll_path0, h, w)
+        ll = ll_path1 + self.freq_crossattention(ll_path1_norm, ll_path0_norm, ll_path0_norm, h, w)
         ll = ll + self.freq_mlp(self.freq_layernorm3(ll))
 
         ll = ll.reshape(b, h, w, c).permute(0, 3, 1, 2)
@@ -440,6 +442,7 @@ class BasicBlock(nn.Module):
         self.wavelet = wavelet
 
         print("Wavelet Type: ", self.wavelet)
+        print("v3_09032026")
 
         def init_identity(m):
             with torch.no_grad():
@@ -459,6 +462,7 @@ class BasicBlock(nn.Module):
         return torch.chunk(x, 4, 1)
 
     def forward(self, x):
+
         b, c, h, w = x.shape
         x = F.pad(x, [0, w % 2, 0, h % 2], mode="reflect")
 
