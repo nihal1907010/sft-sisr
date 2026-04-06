@@ -1,0 +1,44 @@
+{
+  "os":  "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python":  "CPython 3.12.12",
+  "startedAt":  "2026-04-01T15:30:55.148650Z",
+  "args":  [
+    "-opt",
+    "options/train/EDSR/v4_09032026_sym2_lr1_f256_lsdir.yml",
+    "--auto_resume"
+  ],
+  "program":  "/home/nihal/sft-sisr/basicsr/train.py",
+  "codePath":  "basicsr/train.py",
+  "codePathLocal":  "basicsr/train.py",
+  "git":  {
+    "remote":  "https://github.com/nihal1907010/sft-sisr.git",
+    "commit":  "a710c89b931f7f9b3b2ec9775fcdc4c933c50b78"
+  },
+  "email":  "nihal1907010@stud.kuet.ac.bd",
+  "root":  "/home/nihal/sft-sisr",
+  "host":  "Nihal-Desktop",
+  "executable":  "/home/nihal/miniconda3/envs/sr/bin/python",
+  "cpu_count":  10,
+  "cpu_count_logical":  20,
+  "gpu":  "NVIDIA GeForce RTX 4070",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "1081101176832",
+      "used":  "592388919296"
+    }
+  },
+  "memory":  {
+    "total":  "16644227072"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 4070",
+      "memoryTotal":  "12878610432",
+      "architecture":  "Ada",
+      "uuid":  "GPU-efded72d-69d9-51fc-963d-777a440d0004"
+    }
+  ],
+  "cudaVersion":  "13.1",
+  "writerId":  "4ufwnpnzd0p00w8loelfss9zchhdrlal"
+}

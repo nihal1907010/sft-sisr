@@ -2,8 +2,8 @@
 datasets/*
 experiments/*
 results/*
-tb_logger/*
-wandb/*
+
+
 tmp/*
 
 docs/api

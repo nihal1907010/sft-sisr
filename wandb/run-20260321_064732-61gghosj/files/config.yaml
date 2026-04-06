@@ -1,0 +1,184 @@
+_wandb:
+    value:
+        cli_version: 0.25.0
+        e:
+            gbs5spkrug7f00m9h21uoo1kviszq84j:
+                args:
+                    - -opt
+                    - options/train/EDSR/v3_09032026_sym2_lr2.yml
+                    - --auto_resume
+                codePath: basicsr/train.py
+                codePathLocal: basicsr/train.py
+                cpu_count: 10
+                cpu_count_logical: 20
+                cudaVersion: "13.1"
+                disk:
+                    /:
+                        total: "1081101176832"
+                        used: "111470546944"
+                email: nihal1907010@stud.kuet.ac.bd
+                executable: /home/nihal/miniconda3/envs/sr/bin/python
+                git:
+                    commit: 7d9ac8f31e4ee5484e92cad488416134a8698582
+                    remote: https://github.com/nihal1907010/sft-sisr.git
+                gpu: NVIDIA GeForce RTX 4070
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ada
+                      memoryTotal: "12878610432"
+                      name: NVIDIA GeForce RTX 4070
+                      uuid: GPU-efded72d-69d9-51fc-963d-777a440d0004
+                host: Nihal-Desktop
+                memory:
+                    total: "16644222976"
+                os: Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39
+                program: /home/nihal/sft-sisr/basicsr/train.py
+                python: CPython 3.12.12
+                root: /home/nihal/sft-sisr
+                startedAt: "2026-03-21T00:47:32.675348Z"
+                writerId: gbs5spkrug7f00m9h21uoo1kviszq84j
+        m: []
+        python_version: 3.12.12
+        t:
+            "1":
+                - 1
+                - 41
+            "2":
+                - 1
+                - 41
+            "3":
+                - 5
+                - 13
+                - 14
+                - 16
+                - 35
+                - 41
+            "4": 3.12.12
+            "5": 0.25.0
+            "12": 0.25.0
+            "13": linux-x86_64
+auto_resume:
+    value: true
+datasets:
+    value:
+        train:
+            batch_size_per_gpu: 4
+            dataroot_gt: datasets/train/div2k/hr_sub
+            dataroot_lq: datasets/train/div2k/lrx4_sub
+            dataset_enlarge_ratio: 1
+            filename_tmpl: '{}'
+            gt_size: 256
+            io_backend:
+                type: disk
+            name: DIV2K
+            num_accumulation_steps: 4
+            num_worker_per_gpu: 8
+            phase: train
+            pin_memory: true
+            prefetch_mode: cuda
+            scale: 4
+            type: PairedImageDataset
+            use_hflip: true
+            use_rot: true
+        val_1:
+            dataroot_gt: datasets/test/set5/hr
+            dataroot_lq: datasets/test/set5/lrx4
+            io_backend:
+                type: disk
+            name: Set5
+            phase: val
+            scale: 4
+            type: PairedImageDataset
+dist:
+    value: false
+dist_params:
+    value:
+        backend: nccl
+        port: 29500
+is_train:
+    value: true
+logger:
+    value:
+        print_freq: 1000
+        save_checkpoint_freq: 1000
+        use_tb_logger: true
+        wandb:
+            project: v3_09032026_f64_b8_h8_8x8_b4a4_x4_sym2_lr2
+            resume_id: 61gghosj
+manual_seed:
+    value: 10
+model_type:
+    value: SRModel
+name:
+    value: v3_09032026_f64_b8_h8_8x8_b4a4_x4_sym2_lr2
+network_g:
+    value:
+        hw: 8
+        img_range: 255
+        num_block: 8
+        num_feat: 64
+        num_heads: 8
+        num_in_ch: 3
+        num_out_ch: 3
+        rgb_mean:
+            - 0.467809
+            - 0.448499
+            - 0.403531
+        type: EDSR
+        upscale: 4
+        wavelet: sym2
+        ww: 8
+num_gpu:
+    value: 1
+path:
+    value:
+        experiments_root: /home/nihal/sft-sisr/experiments/v3_09032026_f64_b8_h8_8x8_b4a4_x4_sym2_lr2
+        log: /home/nihal/sft-sisr/experiments/v3_09032026_f64_b8_h8_8x8_b4a4_x4_sym2_lr2
+        models: /home/nihal/sft-sisr/experiments/v3_09032026_f64_b8_h8_8x8_b4a4_x4_sym2_lr2/models
+        pretrain_network_g: null
+        resume_state: null
+        strict_load_g: false
+        training_states: /home/nihal/sft-sisr/experiments/v3_09032026_f64_b8_h8_8x8_b4a4_x4_sym2_lr2/training_states
+        visualization: /home/nihal/sft-sisr/experiments/v3_09032026_f64_b8_h8_8x8_b4a4_x4_sym2_lr2/visualization
+rank:
+    value: 0
+root_path:
+    value: /home/nihal/sft-sisr
+scale:
+    value: 4
+train:
+    value:
+        ema_decay: 0.999
+        optim_g:
+            betas:
+                - 0.9
+                - 0.99
+            lr: 0.0002
+            type: Adam
+            weight_decay: 0
+        pixel_opt:
+            loss_weight: 1
+            reduction: mean
+            type: L1Loss
+        scheduler:
+            gamma: 0.5
+            milestones:
+                - 100000
+            type: MultiStepLR
+        total_iter: 100000
+        warmup_iter: -1
+val:
+    value:
+        metrics:
+            psnr:
+                crop_border: 4
+                test_y_channel: true
+                type: calculate_psnr
+            ssim:
+                crop_border: 4
+                test_y_channel: true
+                type: calculate_ssim
+        save_img: true
+        val_freq: 1000
+world_size:
+    value: 1
